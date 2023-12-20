@@ -10,8 +10,8 @@ jobs:
         fail-fast: false
         max-parallel: 2
         matrix:
-          os: [ubuntu-latest, ubuntu-20.04, windows-latest]
-          images: [hello-world, alpine]
+          os: [ubuntu-latest, ubuntu-20.04, windows-latest] # it creates 3X2=6 jobs as combination of os and images. if one job fails, all remaining ones cancel.
+          images: [hello-world, alpine]                     # by using matrix, prevent the redundancy of enumarating one by one
           exclude:
             - images: alpine
               os: windows-latest
