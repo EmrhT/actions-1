@@ -26,3 +26,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: echo this workflow/job/step is executed for event type -  ${{ github.event_name }} 
+
+# dummy comment to trigger the workflow
