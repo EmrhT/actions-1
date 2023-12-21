@@ -7,16 +7,16 @@ on:
 jobs:
     deploy:
       strategy:
-        fail-fast: false
-        max-parallel: 2
+        fail-fast: false  # reverses the behaviour described in #1
+        max-parallel: 2   # limits max number of parallel executions
         matrix:
-          os: [ubuntu-latest, ubuntu-20.04, windows-latest] # it creates 3X2=6 jobs as combination of os and images. if one job fails, all remaining ones cancel.
-          images: [hello-world, alpine]                     # by using matrix, prevent the redundancy of enumarating one by one
-          exclude:
-            - images: alpine
-              os: windows-latest
-          include:
-            - images: amd64/alpine
+          os: [ubuntu-latest, ubuntu-20.04, windows-latest] # 1. it creates 3X2=6 jobs as combination of os and images. if one job fails, all remaining ones cancel.
+          images: [hello-world, alpine]                     # 2. by using matrix, prevent the redundancy of enumarating one by one
+          exclude: # exclude jobs from the matrix for the given combination
+            - images: alpine  
+              os: windows-latest 
+          include: # include jobs into the matrix for the given combination
+            - images: amd64/alpine 
               os: ubuntu-20.04
       runs-on: ${{ matrix.os }}
       steps:
