@@ -11,7 +11,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Dump job context
         env:
-          JOB_CONTEXT: ${{ toJson(job) }}
+          JOB_CONTEXT: ${{ toJson(job) }} # viewing context might be useful when debugging as well to see what went wrong in a step.
         run: echo "$JOB_CONTEXT"
       - name: Dump steps context
         env:
